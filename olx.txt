@@ -1,0 +1,2217 @@
+
+
+import java.awt.EventQueue;
+
+
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.awt.CardLayout;
+import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JMenu;
+import javax.swing.JSeparator;
+import javax.swing.JPasswordField;
+import javax.swing.ButtonGroup;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollBar;
+import javax.swing.JTextArea;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.LineBorder;
+import java.awt.Component;
+import java.awt.Rectangle;
+import java.awt.Window;
+
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Window.Type;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+import javax.swing.JToolBar;
+import javax.swing.JToggleButton;
+import javax.swing.DebugGraphics;
+import java.awt.Canvas;
+import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
+import javax.swing.JPopupMenu;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.Blob;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.awt.GridLayout;
+import java.awt.Panel;
+import javax.swing.event.MenuKeyListener;
+import javax.swing.event.MenuListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuKeyEvent;
+import javax.swing.JTable;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
+public class avi {
+	
+	olxDatabase db = new olxDatabase();
+
+	private JFrame frame;
+	private JTextField textField;
+	private JTextField userName_field;
+	private JPasswordField password;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JPanel SignUp;
+	private JPanel LogIn;
+	private JPanel panel;
+	private JPanel userDashBoard;
+	private JLayeredPane layeredPane;
+	private JLayeredPane layeredPane_1;
+	private JLabel userPic;
+	private JTextField nameField;
+	private JTextField fatherName_field;
+	private JTextField enterUsername_field;
+	private JTextField password_for_SignUp_field;
+	private JTextField mobileNo_field;
+	private JTextField Address_field;
+	private JTextField postNameField;
+	private JTextField priceField;
+	private JTextField imagePathField;
+	private JTextField cityField;
+	private JTextField addressfield;
+	private JPanel Add_Post;
+	private JComboBox subCategory;
+	private JPanel Specific_category;
+	private JPanel Header_panel;
+	private JTextField textField_6;
+	private JPanel LogIn_Header_panel;
+	private JTextField nameTextField;
+	private JTextField fatherNameTextField;
+	private JTextField mobileTextField;
+	private JTextField AddressTextField;
+	private JTextField totalPostsTextField;
+	private JTextField usernameTextField;
+	private JTextField passwordTextField;
+	private JTextField NameField;
+	private JTextField FatherNameField;
+	private JTextField mobileField;
+	private JTextField addressTextField;
+	private JTextField usernameField;
+	private JTextField passwordField;
+	private JTextField imagePath;
+	private JTextArea specificCategoryName;
+	private JTable freshRecommendationTable;
+	private JLabel userNameField;
+	private JLabel label_7;
+	private ImageIcon myimage;
+	public byte data[] = null;
+	public ResultSet rs = null;
+	public int userID;
+	public int sellerUserID;
+	private JLabel userImage;
+	private JPanel myPost;
+	private JButton addPostButton;
+	private JLabel label_18;
+	private JTable myPostTable;
+	private JTable categoryTable;
+	private JLabel label_15;
+	public String str;
+	public File f;
+	public FileInputStream fi = null;
+	private JLabel lblGender;
+	private JRadioButton Male;
+	private JRadioButton Female;
+	private JRadioButton usedStatus;
+	private JRadioButton newStatus;
+	private String gender ="";
+	private String post_status;
+	private JLabel usernameEmpty;
+	private JLabel passwordEmpty;
+	private JComboBox category;
+	private JLabel postImage;
+	private JLabel postPic;
+	private JTextArea postDescription;
+	private JTextArea seller_name;
+	private JLabel userPhoneNo;
+	private JTextArea postCity;
+	private JLabel postDate;
+	private JTextArea postName;
+	private JLabel postPrice;
+	private int row;
+	private JPanel Sigle_Post;
+	private JButton btnDeletePost;
+	private JTextArea textArea;
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					avi window = new avi();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	public Image imageIcon(String picName)                         //This function is used to set a ImageIcon on every Button
+	{
+		Image img = new ImageIcon(this.getClass().getResource("/"+picName)).getImage();
+		return img;
+	}
+	public void switchPanels(JPanel pane)
+	{
+		layeredPane.removeAll();
+		layeredPane.add(pane);
+		layeredPane.repaint();
+		layeredPane.revalidate();
+	}
+	public void switchPanels2(JPanel pane)
+	{
+		layeredPane_1.removeAll();
+		layeredPane_1.add(pane);
+		layeredPane_1.repaint();
+		layeredPane_1.revalidate();
+	}
+
+	public ImageIcon seticon(String str, byte[] img,int width,int height)				//This function is used to set Image in Table or Label
+	{
+		if (str != null)
+		{
+			myimage = new ImageIcon(str);
+			
+		}else
+		{
+			myimage = new ImageIcon(img); 
+		}
+		
+		java.awt.Image img1 =myimage.getImage();
+		java.awt.Image img2 = img1.getScaledInstance(width,height,java.awt.Image.SCALE_SMOOTH);
+		ImageIcon i = new ImageIcon(img2);
+		return i;
+		
+	}
+	public void Table(JTable tabl , ResultSet rs)                      //This function set the Column of Table
+	{
+		
+		tabl.setDefaultRenderer(Object.class, new imageTable());
+		
+		DefaultTableModel dt = new DefaultTableModel();
+		dt.addColumn("ID");
+		dt.addColumn("Price");
+		dt.addColumn("Image");
+		try
+		{
+			while (db.rs.next())
+			{
+				Object[] obj = new Object[3];
+				obj[0] = rs.getInt(1);
+				obj[1] = rs.getInt(2);
+				Blob blob = db.rs.getBlob(3);
+				byte[] data = blob.getBytes(1,(int)blob.length());
+				 
+				obj[2] = new JLabel(seticon(null,data,150,150));
+				
+				dt.addRow(obj);
+				
+			}
+			tabl.setModel(dt);
+			tabl.setRowHeight(170); 
+		}
+		catch(Exception e)
+		{
+			System.out.println(" Exception  = "+e);
+		}
+	}
+	
+	void postInformation (ResultSet one)				//This Function is used to show Selected post or AD
+	{
+		try {
+				if(one.next())
+				{
+					sellerUserID = one.getInt(2);
+					postName.setText(one.getString(3));
+					postDescription.setText(one.getString(4));
+					postPrice.setText("Rs. "+one.getInt(7));
+					postCity.setText(one.getString(8));
+					postDate.setText(one.getString(11));
+					Blob blob2 = one.getBlob(12);
+					byte[] data2 = blob2.getBytes(1,(int)blob2.length());
+					postPic.setIcon(seticon(null,data2,postPic.getWidth(),postPic.getHeight()));
+					ResultSet sellerData = db.accessSeller(sellerUserID);
+					if(sellerData.next())
+					{
+					seller_name.setText(sellerData.getString(1));
+					userPhoneNo.setText(sellerData.getString(2));
+					}
+				}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
+	void panelInfor()
+	{
+		ResultSet recommendation = db.accessPanelInformation();
+		Table(freshRecommendationTable,recommendation);
+	}
+	/**
+	 * Create the application.
+	 */
+	public avi() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
+		frame.setBounds(100, 100, 657, 653);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		Image img = new ImageIcon(this.getClass().getResource("/olxTagline.jpg")).getImage().getScaledInstance(638, 186, 0);
+		
+		JLabel lblcreatedByMuhammad = new JLabel("2020 @ Created by Muhammad Imran Aslam ");
+		lblcreatedByMuhammad.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		lblcreatedByMuhammad.setBounds(197, 577, 227, 27);
+		frame.getContentPane().add(lblcreatedByMuhammad);
+
+		/*	
+		 	 header
+		 */
+			
+			layeredPane_1 = new JLayeredPane();
+			layeredPane_1.setBounds(0, 0, 641, 108);
+			frame.getContentPane().add(layeredPane_1);
+			layeredPane_1.setLayout(new CardLayout(0, 0));
+			
+			Header_panel = new JPanel();
+			Header_panel.setBackground(Color.WHITE);
+			layeredPane_1.add(Header_panel, "name_10848046696684");
+			Header_panel.setLayout(null);
+			
+			JLabel label_2 = new JLabel("Olx");
+			label_2.setBounds(0, 0, 86, 38);
+			Header_panel.add(label_2);
+			label_2.setForeground(new Color(0, 128, 128));
+			label_2.setFont(new Font("Times New Roman", Font.ITALIC, 46));
+			label_2.setBackground(new Color(47, 79, 79));
+			
+			textField = new JTextField();
+			textField.setBounds(99, 11, 292, 27);
+			Header_panel.add(textField);
+			textField.setColumns(10);
+			
+			JButton button = new JButton("");
+			button.setBounds(390, 10, 50, 29);
+			Header_panel.add(button);
+			button.setIcon(new ImageIcon(imageIcon("search icon.png")));
+			
+			JButton button_1 = new JButton("Login");
+			button_1.setBackground(new Color(100, 149, 237));
+			button_1.setBounds(452, 9, 79, 29);
+			Header_panel.add(button_1);
+			button_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+					switchPanels(LogIn);
+				}
+			});
+			button_1.setFont(new Font("Times New Roman", Font.BOLD, 16));
+			
+			JButton btnSignup = new JButton("SignUp");
+			btnSignup.setBackground(new Color(100, 149, 237));
+			btnSignup.setBounds(542, 9, 89, 29);
+			Header_panel.add(btnSignup);
+			btnSignup.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					switchPanels(SignUp);
+				}
+			});
+			btnSignup.setFont(new Font("Times New Roman", Font.BOLD, 16));
+			
+			JMenuBar menuBar = new JMenuBar();
+			menuBar.setBounds(0, 57, 638, 40);
+			Header_panel.add(menuBar);
+			menuBar.setBackground(Color.PINK);
+			
+			JMenu mntmHome_1 = new JMenu("Home");
+			mntmHome_1.addMenuListener(new MenuListener()               //This action for go to Main Page i.e., Home
+					{
+
+						@Override
+						public void menuCanceled(MenuEvent arg0) {
+							
+						}
+
+						@Override
+						public void menuDeselected(MenuEvent arg0) {
+								
+						}
+
+						@Override
+						public void menuSelected(MenuEvent e) {
+							
+							switchPanels(panel);
+						}
+				
+					});
+			
+			
+			mntmHome_1.setBackground(Color.LIGHT_GRAY);
+			mntmHome_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			menuBar.add(mntmHome_1);
+			
+			JMenu mnAllCategories = new JMenu("All Categories");
+			mnAllCategories.setHorizontalTextPosition(SwingConstants.LEADING);
+			mnAllCategories.setIcon(new ImageIcon(imageIcon("Arrows-Down.png")));
+			mnAllCategories.setFont(new Font("Times New Roman", Font.BOLD, 14));
+			menuBar.add(mnAllCategories);
+			
+			JMenu mnMobiles = new JMenu("Mobiles");
+			mnAllCategories.add(mnMobiles);
+			
+			JMenuItem mntmMobilesPhones = new JMenuItem("Mobiles Phones");
+			mntmMobilesPhones.setIcon(new ImageIcon(imageIcon("PhoneIcon.png")));
+			mntmMobilesPhones.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {				// This action for show the only Mobile Posts
+					specificCategoryName.setText(" Mobiles Phones");
+					ResultSet specificPosts = db.accessAllPosts("Mobiles");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnMobiles.add(mntmMobilesPhones);
+			
+			JMenuItem mntmTablets = new JMenuItem("Tablets");
+			mntmTablets.setIcon(new ImageIcon(imageIcon("Tablets.png")));
+			mntmTablets.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Tablets Posts
+					specificCategoryName.setText(" Tablets");
+					ResultSet specificPosts = db.accessAllPosts("Tablets");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnMobiles.add(mntmTablets);
+			
+			JMenu mnElectronicsAndHome = new JMenu("Electronics and Home Appliances");
+			mnAllCategories.add(mnElectronicsAndHome);
+			
+			JMenuItem mntmComputer = new JMenuItem("Laptops");
+			mntmComputer.setIcon(new ImageIcon(imageIcon("Laptos.png")));
+			mntmComputer.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Laptops Posts
+					specificCategoryName.setText(" Laptops");
+					ResultSet specificPosts = db.accessAllPosts("Laptops");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnElectronicsAndHome.add(mntmComputer);
+			
+			JMenuItem mntmTvaudiovideo = new JMenuItem("TV-Audio-Video");
+			mntmTvaudiovideo.setIcon(new ImageIcon(imageIcon("TV.png")));
+			mntmTvaudiovideo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only TV-Audio-Video Posts
+					specificCategoryName.setText(" TV-Audio-Video");
+					ResultSet specificPosts = db.accessAllPosts("TV-Audio-Video");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnElectronicsAndHome.add(mntmTvaudiovideo);
+			
+			JSeparator separator = new JSeparator();
+			mnElectronicsAndHome.add(separator);
+			
+			JMenuItem mntmGenerator = new JMenuItem("Generator");
+			mntmGenerator.setIcon(new ImageIcon(imageIcon("Generator.png")));
+			mntmGenerator.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Generator Posts
+					specificCategoryName.setText(" Generator");
+					ResultSet specificPosts = db.accessAllPosts("Generator");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnElectronicsAndHome.add(mntmGenerator);
+			
+			JMenuItem mntmAcAndCoolers = new JMenuItem("AC and Coolers");
+			mntmAcAndCoolers.setIcon(new ImageIcon(imageIcon("AC.png")));
+			mntmAcAndCoolers.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only AC and Coolers  Posts
+					specificCategoryName.setText(" AC and Coolers");
+					ResultSet specificPosts = db.accessAllPosts("AC and Coolers");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnElectronicsAndHome.add(mntmAcAndCoolers);
+			
+			JMenu mnVehicles = new JMenu("Vehicles");
+			mnAllCategories.add(mnVehicles);
+			
+			JMenuItem mntmBikes = new JMenuItem("Bikes");
+			mntmBikes.setIcon(new ImageIcon(imageIcon("Bikes.png")));
+			mntmBikes.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Bikes Posts
+					specificCategoryName.setText(" Bikes");
+					ResultSet specificPosts = db.accessAllPosts("Bikes");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnVehicles.add(mntmBikes);
+			
+			JMenuItem mntmCars = new JMenuItem("Cars");
+			mntmCars.setIcon(new ImageIcon(imageIcon("Cars.png")));
+			mntmCars.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Cars Posts
+					specificCategoryName.setText(" Cars");
+					ResultSet specificPosts = db.accessAllPosts("Cars");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnVehicles.add(mntmCars);
+			
+			JMenu mnPropertyForSale = new JMenu("Property For Sale");
+			mnAllCategories.add(mnPropertyForSale);
+			
+			JMenuItem mntmHouses = new JMenuItem("Houses");
+			mntmHouses.setIcon(new ImageIcon(imageIcon("Houses.png")));
+			mntmHouses.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Houses Posts
+					specificCategoryName.setText(" Houses");
+					ResultSet specificPosts = db.accessAllPosts("Houses");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnPropertyForSale.add(mntmHouses);
+			
+			JMenuItem mntmLandAndPlots = new JMenuItem("Plots and Lands");
+			mntmLandAndPlots.setIcon(new ImageIcon(imageIcon("Plots.png")));
+			mntmLandAndPlots.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Land and Plots Posts
+					specificCategoryName.setText(" Plots and Lands");
+					ResultSet specificPosts = db.accessAllPosts("Plots and Lands");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnPropertyForSale.add(mntmLandAndPlots);
+			
+			JMenuItem mntmFlatsAndApartments = new JMenuItem("Flats and Apartments");
+			mntmFlatsAndApartments.setIcon(new ImageIcon(imageIcon("Flats.png")));
+			mntmFlatsAndApartments.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Flats and Apartments Posts
+					specificCategoryName.setText(" Flats and Apartments");
+					ResultSet specificPosts = db.accessAllPosts("Flats and Apartments");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnPropertyForSale.add(mntmFlatsAndApartments);
+			
+			JMenu mnMobiles_1 = new JMenu("Mobiles");
+			mnMobiles_1.setHorizontalTextPosition(SwingConstants.LEADING);
+			mnMobiles_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			mnMobiles_1.setIcon(new ImageIcon(imageIcon("PhoneIcon.png")));
+			mnMobiles_1.addMenuListener(new MenuListener()                //This action for move on to Specific Category Panel 
+					{
+
+						@Override
+						public void menuCanceled(MenuEvent arg0) {
+							
+						}
+
+						@Override
+						public void menuDeselected(MenuEvent arg0) {
+								
+						}
+
+						@Override
+						public void menuSelected(MenuEvent e) {
+							
+							specificCategoryName.setText(" Mobiles ");
+							ResultSet specificPosts = db.accessAllPosts("Mobiles");
+							Table(categoryTable,specificPosts);
+							switchPanels(Specific_category);
+						}
+				
+					});
+			menuBar.add(mnMobiles_1);
+			
+			JMenu mnCars = new JMenu("Cars");
+			mnCars.setHorizontalTextPosition(SwingConstants.LEADING);
+			mnCars.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			mnCars.setIcon(new ImageIcon(imageIcon("Cars.png")));
+			mnCars.addMenuListener(new MenuListener()               //This action for move on to Specific Category Panel 
+					{
+
+						@Override
+						public void menuCanceled(MenuEvent arg0) {
+							
+						}
+
+						@Override
+						public void menuDeselected(MenuEvent arg0) {
+								
+						}
+
+						@Override
+						public void menuSelected(MenuEvent e) {
+							
+							specificCategoryName.setText(" Cars ");
+							ResultSet specificPosts = db.accessAllPosts("Cars");
+							Table(categoryTable,specificPosts);
+							switchPanels(Specific_category);
+						}
+				
+					});
+			menuBar.add(mnCars);
+			
+			JMenu mnRentHouses = new JMenu("Houses");
+			mnRentHouses.setHorizontalTextPosition(SwingConstants.LEADING);
+			mnRentHouses.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			mnRentHouses.setIcon(new ImageIcon(imageIcon("Houses.png")));
+			mnRentHouses.addMenuListener(new MenuListener()                //This action for move on to Specific Category Panel 
+					{
+
+						@Override
+						public void menuCanceled(MenuEvent arg0) {
+							
+						}
+
+						@Override
+						public void menuDeselected(MenuEvent arg0) {
+								
+						}
+
+						@Override
+						public void menuSelected(MenuEvent e) {
+							
+							specificCategoryName.setText(" Houses ");
+							ResultSet specificPosts = db.accessAllPosts("Houses");
+							Table(categoryTable,specificPosts);
+							switchPanels(Specific_category);
+						}
+				
+					});
+			menuBar.add(mnRentHouses);
+			menuBar.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{mntmHome_1, mnAllCategories, mnMobiles, mntmMobilesPhones, mntmTablets, mnElectronicsAndHome, mntmComputer, mntmTvaudiovideo, separator, mntmGenerator, mntmAcAndCoolers, mnVehicles, mntmBikes, mntmCars, mnPropertyForSale, mntmHouses, mntmLandAndPlots, mntmFlatsAndApartments, mnMobiles_1, mnCars, mnRentHouses}));
+			
+			LogIn_Header_panel = new JPanel();
+			layeredPane_1.setLayer(LogIn_Header_panel, 0);
+			LogIn_Header_panel.setBackground(new Color(255, 255, 255));
+			layeredPane_1.add(LogIn_Header_panel, "name_29943765905355");
+			LogIn_Header_panel.setLayout(null);
+			
+			JLabel label_6 = new JLabel("Olx");
+			label_6.setForeground(new Color(0, 128, 128));
+			label_6.setFont(new Font("Times New Roman", Font.ITALIC, 46));
+			label_6.setBackground(new Color(47, 79, 79));
+			label_6.setBounds(0, 0, 86, 38);
+			LogIn_Header_panel.add(label_6);
+			
+			textField_6 = new JTextField();
+			textField_6.setColumns(10);
+			textField_6.setBounds(103, 11, 292, 27);
+			LogIn_Header_panel.add(textField_6);
+			
+			JButton button_3 = new JButton("");
+			button_3.setIcon(new ImageIcon(imageIcon("search icon.png")));
+			button_3.setBounds(392, 10, 50, 29);
+			LogIn_Header_panel.add(button_3);
+			
+			JMenuBar menuBar_1 = new JMenuBar();
+			menuBar_1.setBackground(Color.PINK);
+			menuBar_1.setBounds(0, 57, 638, 40);
+			LogIn_Header_panel.add(menuBar_1);
+			
+			JMenu mnHome = new JMenu("Home");
+			mnHome.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			mnHome.addMenuListener(new MenuListener()               //This action for go to Main Page i.e., Home
+					{
+
+						@Override
+						public void menuCanceled(MenuEvent arg0) {
+							
+						}
+
+						@Override
+						public void menuDeselected(MenuEvent arg0) {
+								
+						}
+
+						@Override
+						public void menuSelected(MenuEvent e) {
+							
+							switchPanels(panel);
+						}
+				
+					});
+			menuBar_1.add(mnHome);
+			
+			JMenu mnAllCategories_1 = new JMenu("All Categories");
+			mnAllCategories_1.setHorizontalTextPosition(SwingConstants.LEADING);
+			mnAllCategories_1.setIcon(new ImageIcon(imageIcon("Arrows-Down.png")));
+			mnAllCategories_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
+			menuBar_1.add(mnAllCategories_1);
+			
+			JMenu mnMobiles_3 = new JMenu("Mobiles");
+			mnAllCategories_1.add(mnMobiles_3);
+			
+			JMenuItem mntmMobilesPhones_1 = new JMenuItem("Mobiles Phones");
+			mntmMobilesPhones_1.setIcon(new ImageIcon(imageIcon("PhoneIcon.png")));
+			mntmMobilesPhones_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {				// This action for show the only Mobile Posts
+					specificCategoryName.setText(" Mobiles Phones");
+					ResultSet specificPosts = db.accessAllPosts("Mobiles");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnMobiles_3.add(mntmMobilesPhones_1);
+			
+			JMenuItem mntmTablets_1 = new JMenuItem("Tablets");
+			mntmTablets_1.setIcon(new ImageIcon(imageIcon("Tablets.png")));
+			mntmTablets_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Tablets Posts
+					specificCategoryName.setText(" Tablets");
+					ResultSet specificPosts = db.accessAllPosts("Tablets");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnMobiles_3.add(mntmTablets_1);
+			
+			JMenu mnVehicles_1 = new JMenu("Vehicles");
+			mnAllCategories_1.add(mnVehicles_1);
+			
+			JMenuItem mntmBikes_1 = new JMenuItem("Bikes");
+			mntmBikes_1.setIcon(new ImageIcon(imageIcon("Bikes.png")));
+			mntmBikes_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Bikes Posts
+					specificCategoryName.setText(" Bikes");
+					ResultSet specificPosts = db.accessAllPosts("Bikes");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnVehicles_1.add(mntmBikes_1);
+			
+			JMenuItem mntmCars_1 = new JMenuItem("Cars");
+			mntmCars_1.setIcon(new ImageIcon(imageIcon("Cars.png")));
+			mntmCars_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Cars Posts
+					specificCategoryName.setText(" Cars");
+					ResultSet specificPosts = db.accessAllPosts("Cars");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnVehicles_1.add(mntmCars_1);
+			
+			JMenu mnElectronicsAndHome_1 = new JMenu("Electronics and Home Appliances");
+			mnAllCategories_1.add(mnElectronicsAndHome_1);
+			
+			JMenuItem mntmComputer_1 = new JMenuItem("Laptops");
+			mntmComputer_1.setIcon(new ImageIcon(imageIcon("Laptos.png")));
+			mntmComputer_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Laptops Posts
+					specificCategoryName.setText(" Laptops");
+					ResultSet specificPosts = db.accessAllPosts("Laptops");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnElectronicsAndHome_1.add(mntmComputer_1);
+			
+			JMenuItem mntmTvaudiovideo_1 = new JMenuItem("TV-Audio-Video");
+			mntmTvaudiovideo_1.setIcon(new ImageIcon(imageIcon("TV.png")));
+			mntmTvaudiovideo_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only TV-Audio-Video Posts
+					specificCategoryName.setText(" TV-Audio-Video");
+					ResultSet specificPosts = db.accessAllPosts("TV-Audio-Video");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnElectronicsAndHome_1.add(mntmTvaudiovideo_1);
+			
+			JSeparator separator_1 = new JSeparator();
+			mnElectronicsAndHome_1.add(separator_1);
+			
+			JMenuItem mntmGenerator_1 = new JMenuItem("Generator");
+			mntmGenerator_1.setIcon(new ImageIcon(imageIcon("Generator.png")));
+			mntmGenerator_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Generator Posts
+					specificCategoryName.setText(" Generator");
+					ResultSet specificPosts = db.accessAllPosts("Generator");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnElectronicsAndHome_1.add(mntmGenerator_1);
+			
+			JMenuItem mntmAcAndCoolers_1 = new JMenuItem("AC and Coolers");
+			mntmAcAndCoolers_1.setIcon(new ImageIcon(imageIcon("AC.png")));
+			mntmAcAndCoolers_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only AC and Coolers  Posts
+					specificCategoryName.setText(" AC and Coolers");
+					ResultSet specificPosts = db.accessAllPosts("AC and Coolers");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnElectronicsAndHome_1.add(mntmAcAndCoolers_1);
+			
+			JMenu mnPropertyForSale_1 = new JMenu("Property For Sale");
+			mnAllCategories_1.add(mnPropertyForSale_1);
+			
+			JMenuItem mntmHouses_1 = new JMenuItem("Houses");
+			mntmHouses_1.setIcon(new ImageIcon(imageIcon("Houses.png")));
+			mntmHouses_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Houses Posts
+					specificCategoryName.setText(" Houses");
+					ResultSet specificPosts = db.accessAllPosts("Houses");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnPropertyForSale_1.add(mntmHouses_1);
+			
+			JMenuItem mntmPlotsAndLands = new JMenuItem("Plots and Lands");
+			mntmPlotsAndLands.setIcon(new ImageIcon(imageIcon("Plots.png")));
+			mntmPlotsAndLands.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Land and Plots Posts
+					specificCategoryName.setText(" Land and Plots");
+					ResultSet specificPosts = db.accessAllPosts("Plots and Lands");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnPropertyForSale_1.add(mntmPlotsAndLands);
+			
+			JMenuItem mntmFlatsAndApartments_1 = new JMenuItem("Flats and Apartments");
+			mntmFlatsAndApartments_1.setIcon(new ImageIcon(imageIcon("Flats.png")));
+			mntmFlatsAndApartments_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {               // This action for show the only Flats and Apartments Posts
+					specificCategoryName.setText(" Flats and Apartments");
+					ResultSet specificPosts = db.accessAllPosts("Flats and Apartments");
+					Table(categoryTable,specificPosts);
+					switchPanels(Specific_category);
+				}
+			});
+			mnPropertyForSale_1.add(mntmFlatsAndApartments_1);
+			
+			JMenu mnMobiles_2 = new JMenu("Mobiles");
+			mnMobiles_2.setHorizontalTextPosition(SwingConstants.LEADING);
+			mnMobiles_2.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			mnMobiles_2.setIcon(new ImageIcon(imageIcon("PhoneIcon.png")));
+			mnMobiles_2.addMenuListener(new MenuListener()               //This action for move on to Specific Category Panel 
+					{
+
+						@Override
+						public void menuCanceled(MenuEvent arg0) {
+							
+						}
+
+						@Override
+						public void menuDeselected(MenuEvent arg0) {
+								
+						}
+
+						@Override
+						public void menuSelected(MenuEvent e) {
+							
+							specificCategoryName.setText(" Mobiles ");
+							ResultSet specificPosts = db.accessAllPosts("Mobiles");
+							Table(categoryTable,specificPosts);
+							switchPanels(Specific_category);
+						}
+				
+					});
+			menuBar_1.add(mnMobiles_2);
+			
+			JMenu mnCars_1 = new JMenu("Cars");
+			mnCars_1.setHorizontalTextPosition(SwingConstants.LEADING);
+			mnCars_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			mnCars_1.setIcon(new ImageIcon(imageIcon("Cars.png")));
+			mnCars_1.addMenuListener(new MenuListener()               //This action for move on to Specific Category Panel 
+					{
+
+						@Override
+						public void menuCanceled(MenuEvent arg0) {
+							
+						}
+
+						@Override
+						public void menuDeselected(MenuEvent arg0) {
+								
+						}
+
+						@Override
+						public void menuSelected(MenuEvent e) {
+							
+							specificCategoryName.setText(" Cars ");
+							ResultSet specificPosts = db.accessAllPosts("Cars");
+							Table(categoryTable,specificPosts);
+							switchPanels(Specific_category);
+						}
+				
+					});
+			menuBar_1.add(mnCars_1);
+			
+			JMenu mnHouses = new JMenu("Houses");
+			mnHouses.setHorizontalTextPosition(SwingConstants.LEADING);
+			mnHouses.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			mnHouses.setIcon(new ImageIcon(imageIcon("Houses.png")));
+			mnHouses.addMenuListener(new MenuListener()               //This action for move on to Specific Category Panel 
+					{
+
+						@Override
+						public void menuCanceled(MenuEvent arg0) {
+							
+						}
+
+						@Override
+						public void menuDeselected(MenuEvent arg0) {
+								
+						}
+
+						@Override
+						public void menuSelected(MenuEvent e) {
+							
+							specificCategoryName.setText(" Houses ");
+							ResultSet specificPosts = db.accessAllPosts("Houses");
+							Table(categoryTable,specificPosts);
+							switchPanels(Specific_category);
+						}
+				
+					});
+			menuBar_1.add(mnHouses);
+			
+			/*			Here Menu Bar Ended........           */
+				
+				JLabel dashBoard_pic = new JLabel("");
+				dashBoard_pic.setBounds(506, 11, 50, 27);
+				LogIn_Header_panel.add(dashBoard_pic);
+				
+				JButton button_2 = new JButton("");
+				button_2.setBorder(new LineBorder(new Color(255, 255, 255)));
+				button_2.setIcon(new ImageIcon(imageIcon("Arrows-Down.png")));
+				button_2.setBackground(new Color(255, 255, 255));
+				button_2.setBounds(557, 14, 24, 24);
+				LogIn_Header_panel.add(button_2);
+
+				
+				button_2.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						
+						switchPanels(userDashBoard);
+						
+					}
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						
+					}
+				});
+				
+				
+				layeredPane = new JLayeredPane();
+				layeredPane.setBounds(0, 107, 639, 458);
+				frame.getContentPane().add(layeredPane);
+				layeredPane.setLayout(new CardLayout(0, 0));
+				
+				panel = new JPanel();
+				panel.setBackground(Color.WHITE);
+				panel.addComponentListener(new ComponentAdapter() {
+					@Override
+					public void componentShown(ComponentEvent arg0) {
+						panelInfor();
+					}
+				});
+				layeredPane.add(panel, "name_899990035668");
+				panel.setLayout(null);
+				
+				JLabel label = new JLabel("");
+				label.setIcon(null);
+				label.setIcon(new ImageIcon(img));
+				label.setBounds(0, 11, 638, 186);
+				panel.add(label);
+				
+				JLabel label_1 = new JLabel("Fresh Recommendation");
+				label_1.setFont(new Font("Times New Roman", Font.BOLD, 19));
+				label_1.setBounds(10, 209, 228, 49);
+				panel.add(label_1);
+				
+				JScrollPane scrollPane_3 = new JScrollPane();
+				scrollPane_3.setBorder(new LineBorder(new Color(0, 102, 102)));
+				scrollPane_3.setBackground(Color.WHITE);
+				scrollPane_3.setBounds(10, 256, 619, 202);
+				panel.add(scrollPane_3);
+				
+				freshRecommendationTable = new JTable();
+				freshRecommendationTable.setOpaque(false);
+				freshRecommendationTable.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						row = freshRecommendationTable.getSelectedRow();
+						ResultSet onePost = db.showMyPosts((Integer)freshRecommendationTable.getModel().getValueAt(row, 0));
+						postInformation(onePost);
+						switchPanels(Sigle_Post);
+					}
+				});
+				freshRecommendationTable.setBorder(new LineBorder(new Color(0, 102, 102)));
+				freshRecommendationTable.setBackground(new Color(255, 255, 255));
+				scrollPane_3.setViewportView(freshRecommendationTable);
+				
+				LogIn = new JPanel();
+				LogIn.setBackground(new Color(143, 188, 143));
+				layeredPane.add(LogIn, "name_919645765351");
+				LogIn.setLayout(null);
+				
+				password = new JPasswordField();
+				password.setBounds(225, 201, 239, 25);
+				LogIn.add(password);
+				
+				JLabel header_of_LogIn = new JLabel("LogIn");
+				header_of_LogIn.setForeground(new Color(255, 255, 0));
+				header_of_LogIn.setFont(new Font("Times New Roman", Font.BOLD, 20));
+				header_of_LogIn.setBounds(292, 47, 103, 31);
+				LogIn.add(header_of_LogIn);
+				
+				JLabel userName = new JLabel("UserName");
+				userName.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				userName.setBounds(201, 105, 78, 23);
+				LogIn.add(userName);
+				
+				userName_field = new JTextField();
+				userName_field.setBounds(225, 132, 239, 25);
+				LogIn.add(userName_field);
+				userName_field.setColumns(10);
+				
+				JLabel Password = new JLabel("Password");
+				Password.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				Password.setBounds(201, 171, 78, 23);
+				LogIn.add(Password);
+				
+				JButton LogIn_button = new JButton("LogIn");
+				LogIn_button.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						if(userName_field.getText().trim().isEmpty() && password.getText().trim().isEmpty())
+						{
+							usernameEmpty.setText("Username is Empty.");
+							passwordEmpty.setText("Password is Empty.");
+						}else if(userName_field.getText().trim().isEmpty())
+						{
+							usernameEmpty.setText("Username is Empty.");
+						}else if(password.getText().trim().isEmpty())
+						{
+							passwordEmpty.setText("Password is Empty.");
+						}else if((userName_field.getText().trim().isEmpty() || password.getText().trim().isEmpty())== false)
+						{
+							String pass = password.getText();
+							rs = db.accessUserInformation(userName_field.getText());
+							try {
+									if(rs.next())
+									{
+										if(pass.equals(rs.getString(8)))
+										{
+											userID = rs.getInt(1);
+											Blob blob = rs.getBlob(9);
+											data = blob.getBytes(1, (int)blob.length());
+											dashBoard_pic.setIcon(seticon(null,data,dashBoard_pic.getWidth(),dashBoard_pic.getHeight()));
+											userPic.setIcon(seticon(null,data,userPic.getWidth(),userPic.getHeight()));
+											userImage.setIcon(seticon(null,data,userImage.getWidth(),userImage.getHeight()));
+											userNameField.setText(rs.getString(2));
+											NameField.setText(rs.getString(2));
+											label_7.setIcon(seticon(null,data,label_7.getWidth(),label_7.getHeight()));
+											nameTextField.setText(rs.getString(2));
+											fatherNameTextField.setText(rs.getString(3));
+											FatherNameField.setText(rs.getString(3));
+											mobileTextField.setText(rs.getString(5));
+											mobileField.setText(rs.getString(5));
+											AddressTextField.setText(rs.getString(6));
+											addressTextField.setText(rs.getString(6));
+											usernameTextField.setText(rs.getString(7));
+											usernameField.setText(rs.getString(7));
+											passwordTextField.setText(rs.getString(8));
+											passwordField.setText(rs.getString(8));
+											switchPanels2(LogIn_Header_panel);	
+											switchPanels(panel);
+										}else{
+												JOptionPane.showMessageDialog(null,"Your Password is not Correct !!! "," Error",JOptionPane.ERROR_MESSAGE);
+										}
+									}
+									else{
+											JOptionPane.showMessageDialog(null,"You are not registered yet !!! "," Error",JOptionPane.ERROR_MESSAGE);
+										}
+						} catch (SQLException e) {
+							e.printStackTrace();
+							}
+						}
+					}
+				});
+				LogIn_button.setBackground(new Color(51, 204, 102));
+				LogIn_button.setFont(new Font("Times New Roman", Font.BOLD, 13));
+				LogIn_button.setBounds(238, 271, 85, 29);
+				LogIn.add(LogIn_button);
+				
+				JButton Cencel_LogIn_Button = new JButton("Cancel");
+				Cencel_LogIn_Button.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+						switchPanels(panel);
+					}
+				});
+				Cencel_LogIn_Button.setBackground(new Color(153, 204, 102));
+				Cencel_LogIn_Button.setFont(new Font("Times New Roman", Font.BOLD, 13));
+				Cencel_LogIn_Button.setBounds(365, 271, 85, 29);
+				LogIn.add(Cencel_LogIn_Button);
+				
+				JLabel icon_of_username = new JLabel("");
+				icon_of_username.setIcon(new ImageIcon(imageIcon("Users.png")));
+				icon_of_username.setBounds(203, 133, 24, 24);
+				LogIn.add(icon_of_username);
+				
+				JLabel icon_of_password = new JLabel("");
+				icon_of_password.setIcon(new ImageIcon(imageIcon("Password.png")));
+				icon_of_password.setBounds(203, 202, 24, 24);
+				LogIn.add(icon_of_password);
+				
+				usernameEmpty = new JLabel("");
+				usernameEmpty.setForeground(Color.RED);
+				usernameEmpty.setBounds(230, 157, 207, 16);
+				LogIn.add(usernameEmpty);
+				
+				passwordEmpty = new JLabel("");
+				passwordEmpty.setForeground(Color.RED);
+				passwordEmpty.setBounds(230, 228, 207, 16);
+				LogIn.add(passwordEmpty);
+				
+				SignUp = new JPanel();
+				SignUp.setBackground(new Color(153, 204, 204));
+				layeredPane.add(SignUp, "name_924721365270");
+				SignUp.setLayout(null);
+				
+				JLabel header_of_SignUp = new JLabel("Register Yourself");
+				header_of_SignUp.setForeground(Color.YELLOW);
+				header_of_SignUp.setFont(new Font("Times New Roman", Font.BOLD, 20));
+				header_of_SignUp.setBounds(219, 11, 160, 31);
+				SignUp.add(header_of_SignUp);
+				
+				JLabel Name = new JLabel("\r\nFull Name");
+				Name.setForeground(new Color(255, 255, 204));
+				Name.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				Name.setBounds(10, 62, 72, 23);
+				SignUp.add(Name);
+				
+				nameField = new JTextField();
+				nameField.setBounds(10, 83, 192, 23);
+				SignUp.add(nameField);
+				nameField.setColumns(10);
+				
+				JLabel FatherName = new JLabel("\r\nFather Name");
+				FatherName.setForeground(new Color(255, 255, 204));
+				FatherName.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				FatherName.setBounds(10, 108, 92, 23);
+				SignUp.add(FatherName);
+				
+				fatherName_field = new JTextField();
+				fatherName_field.setColumns(10);
+				fatherName_field.setBounds(10, 130, 192, 23);
+				SignUp.add(fatherName_field);
+				
+				JLabel enterUsername = new JLabel("Enter Username");
+				enterUsername.setForeground(new Color(255, 255, 204));
+				enterUsername.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				enterUsername.setBounds(10, 157, 107, 23);
+				SignUp.add(enterUsername);
+				
+				enterUsername_field = new JTextField();
+				enterUsername_field.setColumns(10);
+				enterUsername_field.setBounds(10, 178, 192, 23);
+				SignUp.add(enterUsername_field);
+				
+				JLabel password_for_SignUp = new JLabel("Password");
+				password_for_SignUp.setForeground(new Color(255, 255, 204));
+				password_for_SignUp.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				password_for_SignUp.setBounds(10, 206, 107, 23);
+				SignUp.add(password_for_SignUp);
+				
+				password_for_SignUp_field = new JTextField();
+				password_for_SignUp_field.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						db.checkUsername(enterUsername_field.getText());
+					}
+				});
+				password_for_SignUp_field.setColumns(10);
+				password_for_SignUp_field.setBounds(10, 227, 192, 23);
+				SignUp.add(password_for_SignUp_field);
+				
+				JLabel mobileNo = new JLabel("Mobile No.");
+				mobileNo.setForeground(new Color(255, 255, 204));
+				mobileNo.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				mobileNo.setBounds(10, 253, 107, 23);
+				SignUp.add(mobileNo);
+				
+				mobileNo_field = new JTextField();
+				mobileNo_field.setColumns(10);
+				mobileNo_field.setBounds(10, 273, 192, 23);
+				SignUp.add(mobileNo_field);
+				
+				JLabel Address = new JLabel("Address");
+				Address.setForeground(new Color(255, 255, 204));
+				Address.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				Address.setBounds(272, 253, 107, 23);
+				SignUp.add(Address);
+				
+				Address_field = new JTextField();
+				Address_field.setColumns(10);
+				Address_field.setBounds(272, 273, 357, 74);
+				SignUp.add(Address_field);
+				
+				JButton submitButton_for_SignUp = new JButton("Submit");
+				submitButton_for_SignUp.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if((nameField.getText().trim().isEmpty() || fatherName_field.getText().trim().isEmpty() || enterUsername_field.getText().trim().isEmpty()
+								|| password_for_SignUp_field.getText().trim().isEmpty() || mobileNo_field.getText().trim().isEmpty() ||
+								Address_field.getText().trim().isEmpty() || imagePath.getText().trim().isEmpty() || gender.isEmpty() )== false) {
+							db.addUser(nameField.getText(), fatherName_field.getText(), gender, mobileNo_field.getText(), Address_field.getText(), enterUsername_field.getText(),
+									password_for_SignUp_field.getText(), imagePath.getText());
+							
+						}else
+						{
+							JOptionPane.showMessageDialog(null,"Field is Empty !!!"," Error",JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				});
+				submitButton_for_SignUp.setBackground(new Color(102, 204, 102));
+				submitButton_for_SignUp.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				submitButton_for_SignUp.setBounds(147, 397, 89, 34);
+				SignUp.add(submitButton_for_SignUp);
+				
+				JButton cancelButton_for_SignUp = new JButton("Cancel");
+				cancelButton_for_SignUp.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						switchPanels(panel);
+					}
+				});
+				cancelButton_for_SignUp.setBackground(new Color(51, 204, 153));
+				cancelButton_for_SignUp.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				cancelButton_for_SignUp.setBounds(323, 397, 89, 34);
+				SignUp.add(cancelButton_for_SignUp);
+				
+				lblGender = new JLabel("Gender");
+				lblGender.setForeground(new Color(255, 255, 204));
+				lblGender.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				lblGender.setBounds(10, 303, 72, 23);
+				SignUp.add(lblGender);
+				
+				Male = new JRadioButton("Male");
+				Male.setOpaque(false);
+				Male.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(Male.isSelected())
+						{
+							Female.setSelected(false);
+							gender="Male";
+						}
+					}
+				});
+				buttonGroup.add(Male);
+				Male.setBounds(10, 324, 62, 23);
+				SignUp.add(Male);
+				
+				Female = new JRadioButton("Female");
+				Female.setOpaque(false);
+				Female.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(Female.isSelected())
+						{
+							Male.setSelected(false);
+							gender="Female";
+						}
+					}
+				});
+				buttonGroup.add(Female);
+				Female.setBounds(88, 324, 92, 23);
+				SignUp.add(Female);
+				
+				JButton uploadImage_button = new JButton("Upload Image");
+				uploadImage_button.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						JFileChooser file = new JFileChooser();
+						int a = file.showSaveDialog(null);
+						if(a==JFileChooser.APPROVE_OPTION)
+						{
+							f = file.getSelectedFile();
+							str = f.getAbsolutePath();
+							label_15.setIcon(seticon(str,null,label_15.getWidth(),label_15.getHeight()));
+							imagePath.setText(str);
+					}
+				  }
+				});
+				uploadImage_button.setFont(new Font("Times New Roman", Font.BOLD, 13));
+				uploadImage_button.setBounds(431, 228, 118, 29);
+				SignUp.add(uploadImage_button);
+				
+				imagePath = new JTextField("No file Selected");
+				imagePath.setColumns(10);
+				imagePath.setBounds(351, 208, 263, 22);
+				SignUp.add(imagePath);
+				
+				label_15 = new JLabel("");
+				label_15.setBorder(new LineBorder(new Color(0, 0, 0)));
+				label_15.setBounds(380, 50, 205, 156);
+				SignUp.add(label_15);
+				
+				/* Add Post Panel Start Here  */
+				Add_Post = new JPanel();
+				Add_Post.setBackground(new Color(255, 255, 255));
+				layeredPane.add(Add_Post, "name_9057622588931");
+				Add_Post.setLayout(null);
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setViewportBorder(null);
+				scrollPane.setBounds(0, 0, 640, 458);
+				Add_Post.add(scrollPane);
+				
+				JPanel panel_1 = new JPanel();
+				panel_1.setBorder(new LineBorder(Color.ORANGE, 8));
+				panel_1.setBackground(new Color(255, 255, 255));
+				scrollPane.setViewportView(panel_1);
+				panel_1.setLayout(null);
+				
+				JLabel label_3 = new JLabel("Add Post");
+				label_3.setForeground(Color.RED);
+				label_3.setFont(new Font("Times New Roman", Font.BOLD, 20));
+				label_3.setBounds(254, -11, 87, 54);
+				panel_1.add(label_3);
+				
+				JLabel label_4 = new JLabel("Post Name");
+				label_4.setForeground(new Color(25, 25, 112));
+				label_4.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				label_4.setBounds(10, 30, 87, 22);
+				panel_1.add(label_4);
+				
+				postNameField = new JTextField();
+				postNameField.setColumns(10);
+				postNameField.setBounds(10, 53, 183, 27);
+				panel_1.add(postNameField);
+				
+				JLabel lblPostDescription = new JLabel("Post Description");
+				lblPostDescription.setForeground(new Color(25, 25, 112));
+				lblPostDescription.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				lblPostDescription.setBounds(10, 89, 118, 22);
+				panel_1.add(lblPostDescription);
+				
+				JLabel lblCategory = new JLabel("Category");
+				lblCategory.setForeground(new Color(25, 25, 112));
+				lblCategory.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				lblCategory.setBounds(10, 230, 87, 22);
+				panel_1.add(lblCategory);
+				
+				category = new JComboBox();
+				category.addActionListener(new ActionListener() {			// When main Category Select then subCategory Menu selected
+					public void actionPerformed(ActionEvent e) {
+						
+						String selected = (String) category.getSelectedItem();
+						if( selected.equals("Mobiles"))
+						{
+							subCategory.setModel(new DefaultComboBoxModel(new String[] {"Select", "Mobiles", "Tablets"}));
+						}
+						else if (selected.equals("Vehicles"))
+						{
+							subCategory.setModel(new DefaultComboBoxModel(new String[] {"Select", "Bikes", "Cars"}));
+						}
+						else if (selected.equals("Electronics and Home Appliances"))
+						{
+							subCategory.setModel(new DefaultComboBoxModel(new String[] {"Select", "Laptops", "TV-Audio-Video","Generator","AC and Cooler"}));
+						}
+						else if (selected.equals("Property For Sale"))
+						{
+							subCategory.setModel(new DefaultComboBoxModel(new String[] {"Select", "Houses", "Land and Plots","Flats and Apartments"}));
+						}
+					}
+				});
+				category.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				category.setModel(new DefaultComboBoxModel(new String[] {"Select", "Mobiles", "Vehicles", "Property For Sale", "Electronics and Home Appliances"}));
+				category.setBounds(10, 257, 118, 20);
+				panel_1.add(category);
+				
+				JLabel lblSubCategory = new JLabel("Sub Category");
+				lblSubCategory.setForeground(new Color(25, 25, 112));
+				lblSubCategory.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				lblSubCategory.setBounds(171, 230, 87, 22);
+				panel_1.add(lblSubCategory);
+				
+				 subCategory = new JComboBox();
+				subCategory.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				
+				subCategory.setBounds(171, 257, 114, 20);
+				panel_1.add(subCategory);
+				
+				JLabel lblPrice = new JLabel("Price");
+				lblPrice.setForeground(new Color(25, 25, 112));
+				lblPrice.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				lblPrice.setBounds(10, 285, 87, 22);
+				panel_1.add(lblPrice);
+				
+				priceField = new JTextField();
+				priceField.setColumns(10);
+				priceField.setBounds(10, 307, 52, 27);
+				panel_1.add(priceField);
+				
+				imagePathField = new JTextField();
+				imagePathField.setColumns(10);
+				imagePathField.setBounds(341, 244, 263, 22);
+				panel_1.add(imagePathField);
+				
+				JLabel lblCity = new JLabel("City");
+				lblCity.setForeground(new Color(25, 25, 112));
+				lblCity.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				lblCity.setBounds(171, 285, 87, 22);
+				panel_1.add(lblCity);
+				
+				cityField = new JTextField();
+				cityField.setColumns(10);
+				cityField.setBounds(171, 307, 114, 27);
+				panel_1.add(cityField);
+				
+				JButton uploadImageButton = new JButton("Upload Image");
+				uploadImageButton.setBackground(new Color(0, 128, 128));
+				uploadImageButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						JFileChooser file = new JFileChooser();
+						int a = file.showSaveDialog(null);
+						if(a==JFileChooser.APPROVE_OPTION)
+						{
+							f = file.getSelectedFile();
+							str = f.getAbsolutePath();
+							postImage.setIcon(seticon(str,null,postImage.getWidth(),postImage.getHeight()));
+							imagePathField.setText(str);
+					}
+				  }
+				});
+				uploadImageButton.setFont(new Font("Times New Roman", Font.BOLD, 13));
+				uploadImageButton.setBounds(423, 264, 118, 29);
+				panel_1.add(uploadImageButton);
+				
+				JScrollPane scrollPane_1 = new JScrollPane();
+				scrollPane_1.setBounds(10, 113, 246, 105);
+				panel_1.add(scrollPane_1);
+				
+				JTextArea postDescriptionField = new JTextArea();
+				scrollPane_1.setViewportView(postDescriptionField);
+				
+				JLabel lblAddress = new JLabel("Address");
+				lblAddress.setForeground(new Color(25, 25, 112));
+				lblAddress.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				lblAddress.setBounds(10, 346, 87, 22);
+				panel_1.add(lblAddress);
+				
+				addressfield = new JTextField();
+				addressfield.setColumns(10);
+				addressfield.setBounds(71, 345, 398, 42);
+				panel_1.add(addressfield);
+				
+				JButton submitButton = new JButton("Submit");
+				submitButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if( (postNameField.getText().isEmpty() || postDescriptionField.getText().isEmpty() || category.getSelectedItem().equals("Select") || subCategory.getSelectedItem().equals("")
+								 || priceField.getText().isEmpty() || imagePathField.getText().isEmpty() || addressfield.getText().isEmpty() || post_status.isEmpty())==false)
+						{
+							db.addPost(userID, postNameField.getText(), postDescriptionField.getText(),(String) category.getSelectedItem(),(String) subCategory.getSelectedItem(),
+									Integer.parseInt(priceField.getText()), cityField.getText(), addressfield.getText(), post_status);
+							db.addPostpic(imagePathField.getText());
+							switchPanels(userDashBoard);
+						} else
+						{
+							JOptionPane.showMessageDialog(null,"Field is Empty !!!"," Error",JOptionPane.ERROR_MESSAGE);
+						}
+						
+					}
+				});
+				submitButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				submitButton.setBackground(new Color(102, 204, 102));
+				submitButton.setBounds(403, 411, 89, 34);
+				panel_1.add(submitButton);
+				
+				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						switchPanels(userDashBoard);
+					}
+				});
+				cancelButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				cancelButton.setBackground(new Color(102, 204, 102));
+				cancelButton.setBounds(524, 411, 89, 34);
+				panel_1.add(cancelButton);
+				
+				JTextArea textArea_1 = new JTextArea();
+				textArea_1.setBounds(10, 110, 246, 113);
+				panel_1.add(textArea_1);
+				
+				postImage = new JLabel("");
+				postImage.setBorder(new LineBorder(new Color(0, 0, 0)));
+				postImage.setBounds(369, 67, 205, 173);
+				panel_1.add(postImage);
+				
+				JLabel lblStatus = new JLabel("Status");
+				lblStatus.setForeground(new Color(25, 25, 112));
+				lblStatus.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				lblStatus.setBounds(10, 392, 87, 22);
+				panel_1.add(lblStatus);
+				
+				 newStatus = new JRadioButton("New");
+				newStatus.setBackground(Color.WHITE);
+				newStatus.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(newStatus.isSelected())
+						{
+							usedStatus.setSelected(false);
+							post_status = "New";
+						}
+					}
+				});
+				newStatus.setBounds(10, 418, 52, 23);
+				panel_1.add(newStatus);
+				
+				 usedStatus = new JRadioButton("Used");
+				usedStatus.setBackground(Color.WHITE);
+				usedStatus.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(usedStatus.isSelected())
+						{
+							newStatus.setSelected(false);
+							post_status = "Used";
+						}
+					}
+				});
+				usedStatus.setBounds(71, 418, 72, 23);
+				panel_1.add(usedStatus);
+				panel_1.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{label_3, label_4, postNameField, lblPostDescription, postDescriptionField, lblCategory, category, lblSubCategory, subCategory, lblPrice, priceField, imagePathField, lblCity, cityField, uploadImageButton}));
+				
+				// Add Post Panel End Here
+				//Specific_category Panel Start Here
+				
+				Specific_category = new JPanel();
+				Specific_category.setFont(new Font("Times New Roman", Font.BOLD, 16));
+				Specific_category.setBackground(Color.WHITE);
+				layeredPane.add(Specific_category, "name_3458033577437");
+				Specific_category.setLayout(null);
+				
+				 specificCategoryName = new JTextArea();
+				 specificCategoryName.setEditable(false);
+				specificCategoryName.setForeground(new Color(0, 0, 153));
+				specificCategoryName.setBackground(new Color(255, 255, 255));
+				specificCategoryName.setFont(new Font("Times New Roman", Font.BOLD, 17));
+				specificCategoryName.setBounds(33, 12, 280, 61);
+				Specific_category.add(specificCategoryName);
+				
+				JLabel lblNewLabel = new JLabel("");
+				lblNewLabel.setIcon(new ImageIcon(imageIcon("NextArrow.png")));
+				lblNewLabel.setBounds(10, 12, 24, 24);
+				Specific_category.add(lblNewLabel);
+				
+				JScrollPane scrollPane_5 = new JScrollPane();
+				scrollPane_5.setOpaque(false);
+				scrollPane_5.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+				scrollPane_5.setBorder(new LineBorder(new Color(51, 102, 153)));
+				scrollPane_5.setBackground(new Color(255, 255, 255));
+				scrollPane_5.setBounds(10, 109, 619, 349);
+				Specific_category.add(scrollPane_5);
+				
+				categoryTable = new JTable();
+				categoryTable.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						row = categoryTable.getSelectedRow();
+						ResultSet onePost = db.showOnePost((Integer)categoryTable.getModel().getValueAt(row, 0));
+						try {
+								if(onePost.next())
+								{
+									sellerUserID = onePost.getInt(1);
+								
+									postName.setText(onePost.getString(2));
+									postDescription.setText(onePost.getString(3));
+									postPrice.setText("Rs. "+onePost.getInt(4));
+									postCity.setText(onePost.getString(5));
+									textArea.setText(onePost.getString(6));
+									postDate.setText(onePost.getString(7));
+									Blob blob2 = onePost.getBlob(8);
+									byte[] data2 = blob2.getBytes(1,(int)blob2.length());
+									postPic.setIcon(seticon(null,data2,postPic.getWidth(),postPic.getHeight()));
+									ResultSet sellerData = db.accessSeller(sellerUserID);
+									if(sellerData.next())
+									{
+										seller_name.setText(sellerData.getString(1));
+										userPhoneNo.setText(sellerData.getString(2));
+									}
+								}
+									//postInformation(onePost);
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						switchPanels(Sigle_Post);
+					}
+				});
+				categoryTable.setBorder(new LineBorder(new Color(51, 102, 153)));
+				categoryTable.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+				scrollPane_5.setViewportView(categoryTable);
+				
+				Sigle_Post = new JPanel();
+				Sigle_Post.setBackground(new Color(240, 255, 255));
+				layeredPane.add(Sigle_Post, "name_5314702769832");
+				Sigle_Post.setLayout(null);
+				
+				JPanel Seller_panel = new JPanel();
+				Seller_panel.setBackground(Color.WHITE);
+				Seller_panel.setBounds(391, 151, 248, 200);
+				Sigle_Post.add(Seller_panel);
+				Seller_panel.setLayout(null);
+				
+				JLabel Seller = new JLabel("Seller Description");
+				Seller.setForeground(new Color(47, 79, 79));
+				Seller.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				Seller.setBounds(10, 3, 179, 20);
+				Seller_panel.add(Seller);
+				
+				seller_name = new JTextArea();
+				seller_name.setForeground(new Color(0, 0, 204));
+				seller_name.setEditable(false);
+				seller_name.setFont(new Font("Times New Roman", Font.BOLD, 20));
+				seller_name.setBounds(10, 27, 228, 94);
+				Seller_panel.add(seller_name);
+				
+				JLabel label_5 = new JLabel("");
+				label_5.setIcon(new ImageIcon(imageIcon("Phone-icon.png")));
+				label_5.setBounds(10, 146, 24, 24);
+				Seller_panel.add(label_5);
+				
+				userPhoneNo = new JLabel("");
+				userPhoneNo.setForeground(new Color(0, 0, 204));
+				userPhoneNo.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+				userPhoneNo.setBounds(44, 146, 194, 24);
+				Seller_panel.add(userPhoneNo);
+				
+				JPanel priceSection_panel = new JPanel();
+				priceSection_panel.setBackground(Color.WHITE);
+				priceSection_panel.setBounds(391, 11, 248, 129);
+				Sigle_Post.add(priceSection_panel);
+				priceSection_panel.setLayout(null);
+				
+				postPrice = new JLabel("");
+				postPrice.setForeground(new Color(0, 0, 102));
+				postPrice.setFont(new Font("Times New Roman", Font.BOLD, 13));
+				postPrice.setBounds(10, 11, 142, 28);
+				priceSection_panel.add(postPrice);
+				
+				postName = new JTextArea();
+				postName.setForeground(new Color(0, 0, 51));
+				postName.setEditable(false);
+				postName.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				postName.setBounds(10, 50, 228, 36);
+				priceSection_panel.add(postName);
+				
+				postCity = new JTextArea();
+				postCity.setEditable(false);
+				postCity.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+				postCity.setBounds(60, 103, 75, 25);
+				priceSection_panel.add(postCity);
+				
+				JLabel lblPosted = new JLabel("Posted In");
+				lblPosted.setForeground(new Color(0, 0, 128));
+				lblPosted.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				lblPosted.setBounds(10, 97, 54, 32);
+				priceSection_panel.add(lblPosted);
+				
+				postDate = new JLabel("");
+				postDate.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+				postDate.setBounds(145, 103, 103, 25);
+				priceSection_panel.add(postDate);
+				
+				JPanel panel_3 = new JPanel();
+				panel_3.setBackground(Color.WHITE);
+				panel_3.setBounds(10, 308, 366, 139);
+				Sigle_Post.add(panel_3);
+				panel_3.setLayout(null);
+				
+				JLabel lblPostDescription_1 = new JLabel("Post Description");
+				lblPostDescription_1.setForeground(new Color(47, 79, 79));
+				lblPostDescription_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				lblPostDescription_1.setBounds(10, 6, 116, 28);
+				panel_3.add(lblPostDescription_1);
+				
+				JScrollPane description = new JScrollPane();
+				description.setBounds(7, 34, 356, 102);
+				panel_3.add(description);
+				
+				postDescription = new JTextArea();
+				postDescription.setEditable(false);
+				postDescription.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				description.setViewportView(postDescription);
+				
+				postPic = new JLabel("");
+				postPic.setBackground(Color.WHITE);
+				postPic.setBorder(new LineBorder(new Color(0, 128, 128)));
+				postPic.setBounds(10, 11, 366, 286);
+				Sigle_Post.add(postPic);
+				
+				JPanel panel_2 = new JPanel();
+				panel_2.setLayout(null);
+				panel_2.setBackground(Color.WHITE);
+				panel_2.setBounds(391, 362, 248, 96);
+				Sigle_Post.add(panel_2);
+				
+				JLabel lblPostAddress = new JLabel("Post Address");
+				lblPostAddress.setForeground(new Color(0, 0, 102));
+				lblPostAddress.setFont(new Font("Times New Roman", Font.BOLD, 13));
+				lblPostAddress.setBounds(10, 0, 142, 28);
+				panel_2.add(lblPostAddress);
+				
+				JScrollPane scrollPane_2 = new JScrollPane();
+				scrollPane_2.setBounds(3, 25, 228, 60);
+				panel_2.add(scrollPane_2);
+				
+				textArea = new JTextArea();
+				scrollPane_2.setViewportView(textArea);
+				textArea.setForeground(new Color(0, 0, 51));
+				textArea.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				textArea.setEditable(false);
+				
+				myPost = new JPanel();
+				myPost.setBackground(new Color(255, 255, 255));
+				layeredPane.add(myPost, "name_34390900110310");
+				myPost.setLayout(null);
+				
+				JLabel lblMyAds = new JLabel("My Posts");
+				lblMyAds.setForeground(new Color(30, 144, 255));
+				lblMyAds.setFont(new Font("Times New Roman", Font.BOLD, 17));
+				lblMyAds.setBounds(44, 0, 141, 51);
+				myPost.add(lblMyAds);
+				
+				label_18 = new JLabel("");
+				label_18.setBounds(10, 11, 24, 24);
+				label_18.setIcon(new ImageIcon(imageIcon("NextArrow.png")));
+				myPost.add(label_18);
+				
+				JScrollPane scrollPane_4 = new JScrollPane();
+				scrollPane_4.setOpaque(false);
+				scrollPane_4.setBackground(Color.WHITE);
+				scrollPane_4.setBounds(10, 82, 619, 376);
+				myPost.add(scrollPane_4);
+				
+				myPostTable = new JTable();
+				myPostTable.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+				myPostTable.setBorder(new LineBorder(new Color(0, 102, 102)));
+				scrollPane_4.setViewportView(myPostTable);
+				
+				btnDeletePost = new JButton("Delete Post");
+				btnDeletePost.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						row = myPostTable.getSelectedRow();
+						db.deletePost((Integer)myPostTable.getModel().getValueAt(row, 0));
+					}
+				});
+				btnDeletePost.setBorder(new LineBorder(new Color(230, 230, 250)));
+				btnDeletePost.setBackground(Color.WHITE);
+				btnDeletePost.setFont(new Font("Times New Roman", Font.BOLD, 13));
+				btnDeletePost.setBounds(527, 28, 102, 23);
+				myPost.add(btnDeletePost);
+				
+				JPanel userProfile = new JPanel();
+				userProfile.setBackground(new Color(255, 255, 255));
+				layeredPane.add(userProfile, "name_34927316189601");
+				userProfile.setLayout(null);
+				
+				JLabel lblUserInformation = new JLabel("User Information");
+				lblUserInformation.setForeground(new Color(0, 0, 139));
+				lblUserInformation.setFont(new Font("Times New Roman", Font.BOLD, 15));
+				lblUserInformation.setBounds(10, 11, 126, 18);
+				userProfile.add(lblUserInformation);
+				
+				JSeparator separator_2 = new JSeparator();
+				separator_2.setBounds(9, 40, 400, 2);
+				userProfile.add(separator_2);
+				
+				JLabel lblName = new JLabel("Name");
+				lblName.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				lblName.setBounds(10, 84, 46, 14);
+				userProfile.add(lblName);
+				
+				nameTextField = new JTextField();
+				nameTextField.setEditable(false);
+				nameTextField.setBounds(10, 104, 210, 20);
+				userProfile.add(nameTextField);
+				nameTextField.setColumns(10);
+				
+				JLabel lblFatherName = new JLabel("Father Name");
+				lblFatherName.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				lblFatherName.setBounds(10, 129, 76, 18);
+				userProfile.add(lblFatherName);
+				
+				fatherNameTextField = new JTextField();
+				fatherNameTextField.setEditable(false);
+				fatherNameTextField.setBounds(10, 152, 210, 20);
+				userProfile.add(fatherNameTextField);
+				fatherNameTextField.setColumns(10);
+				
+				JLabel lblBasicInformation = new JLabel("Basic Information");
+				lblBasicInformation.setForeground(new Color(30, 144, 255));
+				lblBasicInformation.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				lblBasicInformation.setBounds(10, 49, 126, 18);
+				userProfile.add(lblBasicInformation);
+				
+				JSeparator separator_3 = new JSeparator();
+				separator_3.setBackground(new Color(119, 136, 153));
+				separator_3.setBounds(10, 68, 114, 8);
+				userProfile.add(separator_3);
+				
+				JLabel lblContactInformation = new JLabel("Contact Information");
+				lblContactInformation.setForeground(new Color(30, 144, 255));
+				lblContactInformation.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				lblContactInformation.setBounds(10, 198, 136, 27);
+				userProfile.add(lblContactInformation);
+				
+				JSeparator separator_4 = new JSeparator();
+				separator_4.setBackground(new Color(119, 136, 153));
+				separator_4.setBounds(10, 219, 126, 8);
+				userProfile.add(separator_4);
+				
+				JSeparator separator_5 = new JSeparator();
+				separator_5.setBounds(10, 190, 400, 2);
+				userProfile.add(separator_5);
+				
+				JLabel lblMobileNo = new JLabel("Mobile No.");
+				lblMobileNo.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				lblMobileNo.setBounds(10, 236, 76, 14);
+				userProfile.add(lblMobileNo);
+				
+				mobileTextField = new JTextField();
+				mobileTextField.setEditable(false);
+				mobileTextField.setColumns(10);
+				mobileTextField.setBounds(10, 253, 210, 20);
+				userProfile.add(mobileTextField);
+				
+				JLabel lblAddress_1 = new JLabel("Address");
+				lblAddress_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				lblAddress_1.setBounds(287, 236, 76, 14);
+				userProfile.add(lblAddress_1);
+				
+				AddressTextField = new JTextField();
+				AddressTextField.setEditable(false);
+				AddressTextField.setColumns(10);
+				AddressTextField.setBounds(287, 253, 311, 54);
+				userProfile.add(AddressTextField);
+				
+				JSeparator separator_6 = new JSeparator();
+				separator_6.setBounds(9, 318, 400, 2);
+				userProfile.add(separator_6);
+				
+				JLabel lblAccountInformation = new JLabel("Account Information");
+				lblAccountInformation.setForeground(new Color(30, 144, 255));
+				lblAccountInformation.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				lblAccountInformation.setBounds(10, 327, 136, 27);
+				userProfile.add(lblAccountInformation);
+				
+				JLabel lblNoOfPosts = new JLabel("No. of Posts");
+				lblNoOfPosts.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				lblNoOfPosts.setBounds(287, 357, 76, 14);
+				userProfile.add(lblNoOfPosts);
+				
+				totalPostsTextField = new JTextField();
+				totalPostsTextField.setEditable(false);
+				totalPostsTextField.setColumns(10);
+				totalPostsTextField.setBounds(287, 378, 28, 20);
+				userProfile.add(totalPostsTextField);
+				
+				JSeparator separator_7 = new JSeparator();
+				separator_7.setBackground(new Color(119, 136, 153));
+				separator_7.setBounds(10, 346, 128, 8);
+				userProfile.add(separator_7);
+				
+				JLabel lblUsername = new JLabel("Username");
+				lblUsername.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				lblUsername.setBounds(10, 357, 76, 14);
+				userProfile.add(lblUsername);
+				
+				JLabel lblPassword = new JLabel("Password");
+				lblPassword.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				lblPassword.setBounds(10, 406, 76, 14);
+				userProfile.add(lblPassword);
+				
+				usernameTextField = new JTextField();
+				usernameTextField.setEditable(false);
+				usernameTextField.setColumns(10);
+				usernameTextField.setBounds(10, 378, 210, 20);
+				userProfile.add(usernameTextField);
+				
+				passwordTextField = new JTextField();
+				passwordTextField.setEditable(false);
+				passwordTextField.setColumns(10);
+				passwordTextField.setBounds(9, 427, 210, 20);
+				userProfile.add(passwordTextField);
+				
+				 label_7 = new JLabel("");
+				label_7.setBorder(new LineBorder(new Color(0, 0, 0)));
+				label_7.setBounds(455, 35, 157, 157);
+				userProfile.add(label_7);
+				
+				JPanel edit_userProfile = new JPanel();
+				edit_userProfile.setLayout(null);
+				edit_userProfile.setBackground(Color.WHITE);
+				layeredPane.add(edit_userProfile, "name_38685407297624");
+				
+				JLabel lblEditUserInformation = new JLabel("Edit User Information");
+				lblEditUserInformation.setForeground(new Color(0, 0, 204));
+				lblEditUserInformation.setFont(new Font("Times New Roman", Font.BOLD, 15));
+				lblEditUserInformation.setBounds(10, 11, 148, 18);
+				edit_userProfile.add(lblEditUserInformation);
+				
+				JSeparator separator_8 = new JSeparator();
+				separator_8.setBounds(9, 40, 400, 2);
+				edit_userProfile.add(separator_8);
+				
+				JLabel label_8 = new JLabel("Name");
+				label_8.setForeground(new Color(0, 0, 51));
+				label_8.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				label_8.setBounds(10, 84, 46, 14);
+				edit_userProfile.add(label_8);
+				
+				NameField = new JTextField();
+				NameField.setColumns(10);
+				NameField.setBounds(10, 104, 210, 20);
+				edit_userProfile.add(NameField);
+				
+				JLabel label_9 = new JLabel("Father Name");
+				label_9.setForeground(new Color(0, 0, 51));
+				label_9.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				label_9.setBounds(10, 129, 76, 18);
+				edit_userProfile.add(label_9);
+				
+				FatherNameField = new JTextField();
+				FatherNameField.setColumns(10);
+				FatherNameField.setBounds(10, 152, 210, 20);
+				edit_userProfile.add(FatherNameField);
+				
+				JLabel label_10 = new JLabel("Basic Information");
+				label_10.setForeground(new Color(0, 0, 153));
+				label_10.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				label_10.setBounds(10, 49, 126, 18);
+				edit_userProfile.add(label_10);
+				
+				JSeparator separator_9 = new JSeparator();
+				separator_9.setBackground(new Color(119, 136, 153));
+				separator_9.setBounds(10, 68, 114, 8);
+				edit_userProfile.add(separator_9);
+				
+				JLabel label_11 = new JLabel("Contact Information");
+				label_11.setForeground(new Color(0, 0, 102));
+				label_11.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				label_11.setBounds(10, 198, 136, 27);
+				edit_userProfile.add(label_11);
+				
+				JSeparator separator_10 = new JSeparator();
+				separator_10.setBackground(new Color(119, 136, 153));
+				separator_10.setBounds(10, 219, 126, 8);
+				edit_userProfile.add(separator_10);
+				
+				JSeparator separator_11 = new JSeparator();
+				separator_11.setBounds(10, 190, 400, 2);
+				edit_userProfile.add(separator_11);
+				
+				JLabel label_12 = new JLabel("Mobile No.");
+				label_12.setForeground(new Color(0, 0, 51));
+				label_12.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				label_12.setBounds(10, 236, 76, 14);
+				edit_userProfile.add(label_12);
+				
+				mobileField = new JTextField();
+				mobileField.setColumns(10);
+				mobileField.setBounds(10, 253, 210, 20);
+				edit_userProfile.add(mobileField);
+				
+				JLabel label_13 = new JLabel("Address");
+				label_13.setForeground(new Color(0, 0, 51));
+				label_13.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				label_13.setBounds(287, 236, 76, 14);
+				edit_userProfile.add(label_13);
+				
+				addressTextField = new JTextField();
+				addressTextField.setColumns(10);
+				addressTextField.setBounds(287, 253, 311, 54);
+				edit_userProfile.add(addressTextField);
+				
+				JSeparator separator_12 = new JSeparator();
+				separator_12.setBounds(9, 318, 400, 2);
+				edit_userProfile.add(separator_12);
+				
+				JLabel label_14 = new JLabel("Account Information");
+				label_14.setForeground(new Color(0, 0, 102));
+				label_14.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				label_14.setBounds(10, 327, 136, 27);
+				edit_userProfile.add(label_14);
+				
+				JSeparator separator_13 = new JSeparator();
+				separator_13.setBackground(new Color(119, 136, 153));
+				separator_13.setBounds(10, 346, 128, 8);
+				edit_userProfile.add(separator_13);
+				
+				JLabel label_16 = new JLabel("Username");
+				label_16.setForeground(new Color(0, 0, 51));
+				label_16.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				label_16.setBounds(10, 357, 76, 14);
+				edit_userProfile.add(label_16);
+				
+				JLabel label_17 = new JLabel("Password");
+				label_17.setForeground(new Color(0, 0, 51));
+				label_17.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				label_17.setBounds(10, 406, 76, 14);
+				edit_userProfile.add(label_17);
+				
+				usernameField = new JTextField();
+				usernameField.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						JOptionPane.showMessageDialog(null, " Cannot Edit the Username. ", "Error", JOptionPane.WARNING_MESSAGE);
+					}
+				});
+				usernameField.setEditable(false);
+				usernameField.setColumns(10);
+				usernameField.setBounds(10, 378, 210, 20);
+				edit_userProfile.add(usernameField);
+				
+				passwordField = new JTextField();
+				passwordField.setColumns(10);
+				passwordField.setBounds(9, 427, 210, 20);
+				edit_userProfile.add(passwordField);
+				
+				JButton btnSaveChanges = new JButton("Save Changes");
+				btnSaveChanges.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						if((NameField.getText().isEmpty() || FatherNameField.getText().isEmpty() || mobileField.getText().isEmpty() || 
+								addressTextField.getText().isEmpty() || passwordField.getText().isEmpty() )==false)
+						{
+							db.updateData(userID, NameField.getText(), FatherNameField.getText(), mobileField.getText(), addressTextField.getText(), passwordField.getText());
+							switchPanels(userDashBoard);
+						}else{
+							JOptionPane.showMessageDialog(null, "Field is Empty !!! "," Error ",JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				});
+				btnSaveChanges.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				btnSaveChanges.setBackground(new Color(102, 204, 102));
+				btnSaveChanges.setBounds(470, 413, 142, 34);
+				edit_userProfile.add(btnSaveChanges);
+				
+				JButton btnDiscard = new JButton("Discard");
+				btnDiscard.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+						switchPanels(userDashBoard);
+					}
+				});
+				btnDiscard.setFont(new Font("Times New Roman", Font.BOLD, 14));
+				btnDiscard.setBackground(new Color(51, 204, 153));
+				btnDiscard.setBounds(346, 413, 89, 34);
+				edit_userProfile.add(btnDiscard);
+				
+				userImage = new JLabel("");
+				userImage.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+				userImage.setBounds(455, 35, 157, 157);
+				edit_userProfile.add(userImage);
+				
+					userDashBoard = new JPanel();
+				userDashBoard.setBackground(new Color(255, 255, 240));
+				layeredPane.add(userDashBoard, "name_5768019432500");
+				userDashBoard.setLayout(null);
+				
+				JPanel dashBoardPanel = new JPanel();
+				dashBoardPanel.setBackground(new Color(204, 255, 204));
+				dashBoardPanel.setBounds(0, 0, 199, 458);
+				userDashBoard.add(dashBoardPanel);
+				dashBoardPanel.setLayout(null);
+				
+				JLabel settingIcon = new JLabel("");
+				settingIcon.setIcon(new ImageIcon(imageIcon("category-icon.png")));
+				settingIcon.setBounds(153, 11, 32, 32);
+				dashBoardPanel.add(settingIcon);
+				
+				 userPic = new JLabel("");
+				userPic.setBorder(null);
+				userPic.setBounds(39, 81, 100, 85);
+				dashBoardPanel.add(userPic);
+				
+				addPostButton = new JButton("Add Post");
+				addPostButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+						switchPanels(Add_Post);
+					}
+				});
+				addPostButton.setBorder(new LineBorder(new Color(204, 255, 204)));
+				addPostButton.setOpaque(false);
+				addPostButton.setBounds(10, 228, 156, 23);
+				dashBoardPanel.add(addPostButton);
+				
+				JButton editInformationButton = new JButton("Edit Information");
+				editInformationButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						switchPanels(edit_userProfile);
+					}
+				});
+				editInformationButton.setOpaque(false);
+				editInformationButton.setBorder(new LineBorder(new Color(204, 255, 204)));
+				editInformationButton.setBounds(10, 315, 156, 23);
+				dashBoardPanel.add(editInformationButton);
+				
+				JButton myPostsButton = new JButton("My Posts");
+				myPostsButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						ResultSet mypost = db.showMyPosts(userID);
+						Table(myPostTable,mypost);
+						switchPanels(myPost);
+					}
+				});
+				myPostsButton.setOpaque(false);
+				myPostsButton.setBorder(new LineBorder(new Color(204, 255, 204)));
+				myPostsButton.setBounds(10, 360, 156, 23);
+				dashBoardPanel.add(myPostsButton);
+				
+				JButton signOutButton = new JButton("SignOut");
+				signOutButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+						switchPanels2(Header_panel);
+						switchPanels(panel);
+					}
+				});
+				signOutButton.setOpaque(false);
+				signOutButton.setBorder(new LineBorder(new Color(204, 255, 204)));
+				signOutButton.setBounds(10, 404, 156, 23);
+				dashBoardPanel.add(signOutButton);
+				
+				JButton aboutAccountButton = new JButton("Account Information");
+				aboutAccountButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						int posts = db.accessNoOfPosts(userID);
+						String post = Integer.toString(posts);
+						totalPostsTextField.setText(post);
+						switchPanels(userProfile);
+					}
+				});
+				aboutAccountButton.setOpaque(false);
+				aboutAccountButton.setBorder(new LineBorder(new Color(204, 255, 204)));
+				aboutAccountButton.setBounds(10, 269, 156, 23);
+				dashBoardPanel.add(aboutAccountButton);
+				
+				 userNameField = new JLabel("");
+				userNameField.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+				userNameField.setBounds(10, 177, 179, 40);
+				dashBoardPanel.add(userNameField);
+				
+				Panel addPostPanel = new Panel();
+				addPostPanel.setBackground(new Color(255, 255, 255));
+				addPostPanel.setBounds(230, 47, 159, 149);
+				userDashBoard.add(addPostPanel);
+				addPostPanel.setLayout(null);
+				
+				JLabel label_20 = new JLabel("");
+				label_20.setIcon(new ImageIcon(imageIcon("Add-Cart-icon.png")));
+				label_20.setBounds(33, 0, 92, 89);
+				addPostPanel.add(label_20);
+				
+				JLabel lblAddPost = new JLabel("        ADD POST");
+				lblAddPost.setFont(new Font("Times New Roman", Font.BOLD, 15));
+				lblAddPost.setBounds(10, 100, 139, 38);
+				addPostPanel.add(lblAddPost);
+				
+				Panel aboutAccountPanel = new Panel();
+				aboutAccountPanel.setBackground(new Color(255, 255, 255));
+				aboutAccountPanel.setBounds(440, 47, 159, 149);
+				userDashBoard.add(aboutAccountPanel);
+				aboutAccountPanel.setLayout(null);
+				
+				JLabel label_21 = new JLabel("");
+				label_21.setIcon(new ImageIcon(imageIcon("file-person-icon.png")));
+				label_21.setBounds(41, 0, 92, 89);
+				aboutAccountPanel.add(label_21);
+				
+				JLabel lblAccountInformation_1 = new JLabel("ABOUT ACCOUNT");
+				lblAccountInformation_1.setFont(new Font("Times New Roman", Font.BOLD, 15));
+				lblAccountInformation_1.setBounds(10, 100, 139, 38);
+				aboutAccountPanel.add(lblAccountInformation_1);
+				
+				Panel editAccountPanel = new Panel();
+				editAccountPanel.setBackground(new Color(255, 255, 255));
+				editAccountPanel.setBounds(230, 270, 159, 149);
+				userDashBoard.add(editAccountPanel);
+				editAccountPanel.setLayout(null);
+				
+				JLabel label_22 = new JLabel("");
+				label_22.setIcon(new ImageIcon(imageIcon("editIcon.png")));
+				label_22.setBounds(38, 0, 92, 89);
+				editAccountPanel.add(label_22);
+				
+				JTextArea txtrEditInformation = new JTextArea();
+				txtrEditInformation.setEditable(false);
+				txtrEditInformation.setText("              EDIT \r\n     INFORMATION\r\n");
+				txtrEditInformation.setToolTipText("");
+				txtrEditInformation.setFont(new Font("Times New Roman", Font.BOLD, 15));
+				txtrEditInformation.setBounds(0, 93, 159, 53);
+				editAccountPanel.add(txtrEditInformation);
+				
+				Panel myPostsPanel = new Panel();
+				myPostsPanel.setBackground(new Color(255, 255, 255));
+				myPostsPanel.setBounds(440, 270, 159, 149);
+				userDashBoard.add(myPostsPanel);
+				myPostsPanel.setLayout(null);
+				
+				JLabel label_23 = new JLabel("");
+				label_23.setIcon(new ImageIcon(imageIcon("folder-document-icon.png")));
+				label_23.setBounds(42, 0, 92, 89);
+				myPostsPanel.add(label_23);
+				
+				JLabel lblMyPost = new JLabel("        MY POST");
+				lblMyPost.setFont(new Font("Times New Roman", Font.BOLD, 15));
+				lblMyPost.setBounds(10, 100, 139, 38);
+				myPostsPanel.add(lblMyPost);
+		
+	}
+}
